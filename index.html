@@ -21,13 +21,14 @@ header{height:78px;display:flex;align-items:center;justify-content:space-between
 nav{display:flex;gap:24px}
 nav a,.eyebrow{font-size:10px;letter-spacing:1.7px;text-transform:uppercase}
 nav a{color:#c5c5c5}nav a:hover{color:#fff}
-.hero{padding:76px 0 36px}
+.hero{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(360px,42vw,560px);padding:76px clamp(22px,5vw,64px) 44px;display:flex;flex-direction:column;justify-content:center;background:#101010;margin-top:0}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background-image:url('assets/hero-aurora-panorama.webp');background-size:cover;background-position:center 52%;transform:scale(1.01)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.43) 58%,rgba(0,0,0,.18) 100%),linear-gradient(0deg,rgba(0,0,0,.48),transparent 55%)}
 .kicker{color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase}
-.hero h1{font-size:clamp(42px,8vw,100px);line-height:.92;letter-spacing:-.065em;margin:18px 0 16px}
-.hero-copy{color:#aaa;line-height:1.7;max-width:530px;font-size:14px}
-.hero-panorama{position:relative;margin:28px 0 12px;overflow:hidden;background:#151515;border:1px solid #303030;aspect-ratio:2.8/1}
-.hero-panorama img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 52%}
-.hero-panorama figcaption{position:absolute;left:20px;bottom:16px;font-size:9px;letter-spacing:2px;color:#fff;text-shadow:0 1px 8px #000;background:#0005;padding:8px 10px}
+.hero .kicker{color:#e0e0e0}
+.hero h1{font-size:clamp(42px,8vw,100px);line-height:.92;letter-spacing:-.065em;margin:18px 0 16px;max-width:1000px;text-shadow:0 3px 24px #0009}
+.hero-copy{color:#eee;line-height:1.7;max-width:530px;font-size:14px;text-shadow:0 2px 12px #000}
+.hero-panorama{display:none}
 .album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,4vw,56px);padding:38px 0 105px}
 .album-button{display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;padding:0}
 .album-art{position:relative;isolation:isolate;aspect-ratio:4/5;margin:0 auto 24px;width:88%;max-width:350px;transition:transform .35s}
@@ -116,7 +117,7 @@ nav a{color:#c5c5c5}nav a:hover{color:#fff}
 .btn.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
 footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px}
 @media(max-width:800px){.album-grid{gap:18px}.category-grid,.country-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){header{height:auto;padding:19px 0;align-items:flex-start;gap:14px}.logo{font-size:19px}nav{gap:11px;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:8px;letter-spacing:1px}.hero{padding:55px 0 20px}.hero-panorama{aspect-ratio:1.5/1;margin-top:22px}.hero-panorama figcaption{left:10px;bottom:10px;font-size:8px}.album-grid{grid-template-columns:1fr;gap:45px;padding:24px 0 70px}.album-art{width:76%;max-width:300px}.album-meta{width:90%;margin:auto}.view{padding-top:30px}.view-heading{display:block}.view-heading p{margin-top:14px}.category-grid,.country-grid{gap:10px}.photo-grid{gap:9px}.photo-card span{font-size:10px;padding:9px}.video-grid{grid-template-columns:1fr}.footer-note,footer{flex-direction:column}.contact{padding:60px 0}}
+@media(max-width:560px){header{height:auto;padding:19px 0;align-items:flex-start;gap:14px}.logo{font-size:19px}nav{gap:11px;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:8px;letter-spacing:1px}.hero{min-height:390px;padding:48px 22px 34px}.hero h1{font-size:clamp(42px,11vw,64px)}.album-grid{grid-template-columns:1fr;gap:45px;padding:24px 0 70px}.album-art{width:76%;max-width:300px}.album-meta{width:90%;margin:auto}.view{padding-top:30px}.view-heading{display:block}.view-heading p{margin-top:14px}.category-grid,.country-grid{gap:10px}.photo-grid{gap:9px}.photo-card span{font-size:10px;padding:9px}.video-grid{grid-template-columns:1fr}.footer-note,footer{flex-direction:column}.contact{padding:60px 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
@@ -139,10 +140,6 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h1>CAPTURING<br>THE WORLD.</h1>
       <p class="hero-copy">A collection of places, skies and stories — captured through my lens.</p>
     </div>
-    <figure class="hero-panorama">
-      <img src="assets/hero-aurora-panorama.webp" alt="Panoramic aurora over a mountain landscape" loading="eager">
-      <figcaption>NORTHERN LIGHTS · PANORAMIC COLLECTION</figcaption>
-    </figure>
     <div class="album-grid">
       <button class="album-button" data-open="astro" aria-label="Open Astro album">
         <div class="album-art">
