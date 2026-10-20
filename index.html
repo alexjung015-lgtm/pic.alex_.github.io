@@ -25,18 +25,21 @@ nav a{color:#c5c5c5}nav a:hover{color:#fff}
 .kicker{color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase}
 .hero h1{font-size:clamp(42px,8vw,100px);line-height:.92;letter-spacing:-.065em;margin:18px 0 16px}
 .hero-copy{color:#aaa;line-height:1.7;max-width:530px;font-size:14px}
+.hero-panorama{position:relative;margin:28px 0 12px;overflow:hidden;background:#151515;border:1px solid #303030;aspect-ratio:2.8/1}
+.hero-panorama img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 52%}
+.hero-panorama figcaption{position:absolute;left:20px;bottom:16px;font-size:9px;letter-spacing:2px;color:#fff;text-shadow:0 1px 8px #000;background:#0005;padding:8px 10px}
 .album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,4vw,56px);padding:38px 0 105px}
 .album-button{display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;padding:0}
 .album-art{position:relative;isolation:isolate;aspect-ratio:4/5;margin:0 auto 24px;width:88%;max-width:350px;transition:transform .35s}
 .stack-card{position:absolute;inset:0;border:1px solid #424242;border-radius:3px;overflow:hidden;background:#171717;box-shadow:0 18px 50px #0008;transition:transform .4s cubic-bezier(.2,.75,.25,1),filter .4s}
 .stack-card img{width:100%;height:100%;object-fit:cover;display:block}
 .stack-card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#0009,transparent 48%);pointer-events:none}
-.stack-card:nth-child(1){z-index:1;transform:rotate(-8deg) translate(-6%,2%) scale(.94);filter:brightness(.52)}
-.stack-card:nth-child(2){z-index:2;transform:rotate(6deg) translate(5%,0) scale(.97);filter:brightness(.72)}
-.stack-card:nth-child(3){z-index:3;transform:rotate(-2deg) translate(0,0)}
-.album-button:hover .stack-card:nth-child(1),.album-button:focus-visible .stack-card:nth-child(1){transform:rotate(-14deg) translate(-13%,0) scale(.93)}
-.album-button:hover .stack-card:nth-child(2),.album-button:focus-visible .stack-card:nth-child(2){transform:rotate(12deg) translate(11%,-2%) scale(.96)}
-.album-button:hover .stack-card:nth-child(3),.album-button:focus-visible .stack-card:nth-child(3){transform:rotate(0) translateY(-5px)}
+.stack-card:nth-child(1){z-index:1;transform:translate(-7%,-5%) rotate(-8deg) scale(.91);filter:brightness(.48)}
+.stack-card:nth-child(2){z-index:2;transform:translate(-3%,-2%) rotate(5deg) scale(.96);filter:brightness(.7)}
+.stack-card:nth-child(3){z-index:3;transform:rotate(-1deg)}
+.album-button:hover .stack-card:nth-child(1),.album-button:focus-visible .stack-card:nth-child(1){transform:translate(-11%,-9%) rotate(-11deg) scale(.91)}
+.album-button:hover .stack-card:nth-child(2),.album-button:focus-visible .stack-card:nth-child(2){transform:translate(-5%,-4%) rotate(7deg) scale(.96)}
+.album-button:hover .stack-card:nth-child(3),.album-button:focus-visible .stack-card:nth-child(3){transform:translate(2%,2%) rotate(0deg)}
 .cover-label{position:absolute;z-index:4;left:18px;right:18px;bottom:18px}
 .cover-label small{display:block;font-size:9px;letter-spacing:2px;margin-bottom:8px;color:#ddd}
 .cover-label strong{font-size:clamp(25px,3.5vw,43px);letter-spacing:-2px}
@@ -68,6 +71,26 @@ nav a{color:#c5c5c5}nav a:hover{color:#fff}
 .country-title{position:absolute;z-index:1;left:15px;bottom:16px}
 .country-title strong{display:block;font-size:clamp(15px,2vw,24px);letter-spacing:.4px}
 .country-title small{color:#ccc;font-size:10px;display:block;margin-top:6px}
+/* Inside ASTRO/TRAVEL: album covers stay straight and slide diagonally, unlike the angled home cards. */
+.category-card,.country-card{overflow:visible;background:transparent;border:0;}
+.category-card .thumb{overflow:visible;position:relative;isolation:isolate;background:transparent;border:0;margin:0 0 18px 18px;width:calc(100% - 18px);}
+.category-card .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:1px solid #3a3a3a;box-shadow:0 10px 24px #0008;transition:transform .35s,filter .35s;}
+.category-card .thumb img:nth-of-type(1){z-index:1;transform:translate(-18px,-18px) scale(.94);filter:brightness(.42);}
+.category-card .thumb img:nth-of-type(2){z-index:2;transform:translate(-9px,-9px) scale(.97);filter:brightness(.68);}
+.category-card .thumb img:nth-of-type(3),.category-card .thumb img:nth-of-type(1):only-of-type{z-index:3;transform:translate(0,0);}
+.category-card:hover .thumb img:nth-of-type(1){transform:translate(-24px,-24px) scale(.94);}
+.category-card:hover .thumb img:nth-of-type(2){transform:translate(-12px,-12px) scale(.97);}
+.category-card:hover .thumb img:nth-of-type(3){transform:translate(2px,2px);}
+.country-card{border:0;overflow:visible;margin:18px 0 0 18px;width:calc(100% - 18px);height:calc(100% - 18px);}
+.country-card img{position:absolute;inset:0;width:100%;height:100%;border:1px solid #3a3a3a;box-shadow:0 10px 24px #0008;transition:transform .35s,filter .35s;}
+.country-card img:nth-of-type(1){z-index:1;transform:translate(-18px,-18px) scale(.94);filter:brightness(.42);}
+.country-card img:nth-of-type(2){z-index:2;transform:translate(-9px,-9px) scale(.97);filter:brightness(.68);}
+.country-card img:nth-of-type(3){z-index:3;transform:translate(0,0);}
+.country-card::after{z-index:4;pointer-events:none;}
+.country-title{z-index:5;}
+.country-card:hover img:nth-of-type(1){transform:translate(-24px,-24px) scale(.94);}
+.country-card:hover img:nth-of-type(2){transform:translate(-12px,-12px) scale(.97);}
+.country-card:hover img:nth-of-type(3){transform:translate(2px,2px);}
 .photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .photo-card{border:0;background:#111;color:white;padding:0;text-align:left;cursor:zoom-in;overflow:hidden}
 .photo-card img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .35s}
@@ -93,7 +116,7 @@ nav a{color:#c5c5c5}nav a:hover{color:#fff}
 .btn.primary{background:#f4f4f4;color:#111;border-color:#f4f4f4}
 footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px}
 @media(max-width:800px){.album-grid{gap:18px}.category-grid,.country-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){header{height:auto;padding:19px 0;align-items:flex-start;gap:14px}.logo{font-size:19px}nav{gap:11px;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:8px;letter-spacing:1px}.hero{padding:55px 0 20px}.album-grid{grid-template-columns:1fr;gap:45px;padding:24px 0 70px}.album-art{width:76%;max-width:300px}.album-meta{width:90%;margin:auto}.view{padding-top:30px}.view-heading{display:block}.view-heading p{margin-top:14px}.category-grid,.country-grid{gap:10px}.photo-grid{gap:9px}.photo-card span{font-size:10px;padding:9px}.video-grid{grid-template-columns:1fr}.footer-note,footer{flex-direction:column}.contact{padding:60px 0}}
+@media(max-width:560px){header{height:auto;padding:19px 0;align-items:flex-start;gap:14px}.logo{font-size:19px}nav{gap:11px;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:8px;letter-spacing:1px}.hero{padding:55px 0 20px}.hero-panorama{aspect-ratio:1.5/1;margin-top:22px}.hero-panorama figcaption{left:10px;bottom:10px;font-size:8px}.album-grid{grid-template-columns:1fr;gap:45px;padding:24px 0 70px}.album-art{width:76%;max-width:300px}.album-meta{width:90%;margin:auto}.view{padding-top:30px}.view-heading{display:block}.view-heading p{margin-top:14px}.category-grid,.country-grid{gap:10px}.photo-grid{gap:9px}.photo-card span{font-size:10px;padding:9px}.video-grid{grid-template-columns:1fr}.footer-note,footer{flex-direction:column}.contact{padding:60px 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
@@ -116,6 +139,10 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       <h1>CAPTURING<br>THE WORLD.</h1>
       <p class="hero-copy">A collection of places, skies and stories — captured through my lens.</p>
     </div>
+    <figure class="hero-panorama">
+      <img src="assets/hero-aurora-panorama.webp" alt="Panoramic aurora over a mountain landscape" loading="eager">
+      <figcaption>NORTHERN LIGHTS · PANORAMIC COLLECTION</figcaption>
+    </figure>
     <div class="album-grid">
       <button class="album-button" data-open="astro" aria-label="Open Astro album">
         <div class="album-art">
@@ -187,55 +214,74 @@ footer{padding:24px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 /*
   EDIT YOUR CONTENT HERE.
   Keep each path exactly the same as the file name in your GitHub assets folder.
-  Countries without photos remain listed and show a placeholder until you add images.
+  Each category/country has a ready-to-replace pic1.webp path. Keep the path and rename your photo to pic1.webp, or change the path below to match your filename.
 */
 const astroCategories = [
-  {name:"Deep Sky", key:"deep-sky", description:"Galaxies, nebulae and distant worlds", cover:"assets/M31_Andromeda.webp", photos:[
-    {src:"assets/M31_Andromeda.webp", title:"Andromeda Galaxy (Korea)"},
+  {name:"Deep Sky", key:"deep-sky", description:"Galaxies, nebulae and distant worlds", cover:"assets/astro/deep-sky/pic1.webp", photos:[
+    {src:"assets/astro/deep-sky/pic1.webp", title:"Deep Sky Photo 1"},
   ]},
-  {name:"Planets", key:"planets", description:"Our solar system, captured up close", cover:"assets/astro/planets.webp", photos:[]},
-  {name:"Milky Way", key:"milky-way", description:"Our galaxy above the landscape", cover:"assets/MW_comet.webp", photos:[
-    {src:"assets/MW_comet.webp", title:"Milky Way, Comet C/2023 A3 and Venus"},
-    {src:"assets/MW_telescope.webp", title:"Milky Way with my Telescope"},
+  {name:"Planets", key:"planets", description:"Our solar system, captured up close", cover:"assets/astro/planets/pic1.webp", photos:[
+    {src:"assets/astro/planets/pic1.webp", title:"Planet Photo 1"},
   ]},
-  {name:"Aurora", key:"aurora", description:"Northern lights and night skies", cover:"assets/Aurora_over_mountain.webp", photos:[
-    {src:"assets/Aurora_over_mountain.webp", title:"Aurora Over the Mountains"},
+  {name:"Milky Way", key:"milky-way", description:"Our galaxy above the landscape", cover:"assets/astro/milky-way/pic1.webp", photos:[
+    {src:"assets/astro/milky-way/pic1.webp", title:"Milky Way Photo 1"},
+  ]},
+  {name:"Aurora", key:"aurora", description:"Northern lights and night skies", cover:"assets/astro/aurora/pic1.webp", photos:[
+    {src:"assets/astro/aurora/pic1.webp", title:"Aurora Photo 1"},
   ]}
 ];
 
 const countries = [
   "NORWAY","AUSTRALIA","JAPAN","KOREA","FRANCE","GERMANY","ICELAND",
   "CHINA","CANADA","VIETNAM","INDONESIA","PHILIPPINES","UAE",
-  "SWITZERLAND","THAILAND","SINGAPORE"
+  "SWITZERLAND","THAILAND","SINGAPORE","TAIWAN","NEW ZEALAND","HONG KONG"
 ];
 
 /* Add travel photos by editing the matching country's photos array.
    Example: NORWAY: [{src:"assets/travel/norway/lofoten.webp", title:"Lofoten"}] */
 const travelPhotos = {
-  "NORWAY": [],
-  "AUSTRALIA": [],
-  "JAPAN": [],
-  "KOREA": [],
-  "FRANCE": [],
-  "GERMANY": [],
-  "ICELAND": [],
-  "CHINA": [],
-  "CANADA": [],
-  "VIETNAM": [],
-  "INDONESIA": [],
-  "PHILIPPINES": [],
-  "UAE": [],
-  "SWITZERLAND": [],
-  "THAILAND": [],
-  "SINGAPORE": []
+  "NORWAY": [{src:"assets/travel/norway/pic1.webp", title:"Norway Photo 1"}],
+  "AUSTRALIA": [{src:"assets/travel/australia/pic1.webp", title:"Australia Photo 1"}],
+  "JAPAN": [{src:"assets/travel/japan/pic1.webp", title:"Japan Photo 1"}],
+  "KOREA": [{src:"assets/travel/korea/pic1.webp", title:"Korea Photo 1"}],
+  "FRANCE": [{src:"assets/travel/france/pic1.webp", title:"France Photo 1"}],
+  "GERMANY": [{src:"assets/travel/germany/pic1.webp", title:"Germany Photo 1"}],
+  "ICELAND": [{src:"assets/travel/iceland/pic1.webp", title:"Iceland Photo 1"}],
+  "CHINA": [{src:"assets/travel/china/pic1.webp", title:"China Photo 1"}],
+  "CANADA": [{src:"assets/travel/canada/pic1.webp", title:"Canada Photo 1"}],
+  "VIETNAM": [{src:"assets/travel/vietnam/pic1.webp", title:"Vietnam Photo 1"}],
+  "INDONESIA": [{src:"assets/travel/indonesia/pic1.webp", title:"Indonesia Photo 1"}],
+  "PHILIPPINES": [{src:"assets/travel/philippines/pic1.webp", title:"Philippines Photo 1"}],
+  "UAE": [{src:"assets/travel/uae/pic1.webp", title:"Uae Photo 1"}],
+  "SWITZERLAND": [{src:"assets/travel/switzerland/pic1.webp", title:"Switzerland Photo 1"}],
+  "THAILAND": [{src:"assets/travel/thailand/pic1.webp", title:"Thailand Photo 1"}],
+  "SINGAPORE": [{src:"assets/travel/singapore/pic1.webp", title:"Singapore Photo 1"}],
+  "TAIWAN": [{src:"assets/travel/taiwan/pic1.webp", title:"Taiwan Photo 1"}],
+  "NEW ZEALAND": [{src:"assets/travel/new-zealand/pic1.webp", title:"New Zealand Photo 1"}],
+  "HONG KONG": [{src:"assets/travel/hong-kong/pic1.webp", title:"Hong Kong Photo 1"}]
 };
 
 /* Optional cover photos for country tiles. Missing files fall back to a dark tile. */
 const countryCovers = {
-  "NORWAY":"assets/Aurora_over_mountain.webp",
-  "AUSTRALIA":"assets/travel.webp",
-  "JAPAN":"assets/city.webp",
-  "ICELAND":"assets/hero.webp"
+  "NORWAY":"assets/travel/norway/pic1.webp",
+  "AUSTRALIA":"assets/travel/australia/pic1.webp",
+  "JAPAN":"assets/travel/japan/pic1.webp",
+  "KOREA":"assets/travel/korea/pic1.webp",
+  "FRANCE":"assets/travel/france/pic1.webp",
+  "GERMANY":"assets/travel/germany/pic1.webp",
+  "ICELAND":"assets/travel/iceland/pic1.webp",
+  "CHINA":"assets/travel/china/pic1.webp",
+  "CANADA":"assets/travel/canada/pic1.webp",
+  "VIETNAM":"assets/travel/vietnam/pic1.webp",
+  "INDONESIA":"assets/travel/indonesia/pic1.webp",
+  "PHILIPPINES":"assets/travel/philippines/pic1.webp",
+  "UAE":"assets/travel/uae/pic1.webp",
+  "SWITZERLAND":"assets/travel/switzerland/pic1.webp",
+  "THAILAND":"assets/travel/thailand/pic1.webp",
+  "SINGAPORE":"assets/travel/singapore/pic1.webp",
+  "TAIWAN":"assets/travel/taiwan/pic1.webp",
+  "NEW ZEALAND":"assets/travel/new-zealand/pic1.webp",
+  "HONG KONG":"assets/travel/hong-kong/pic1.webp"
 };
 
 /* Replace VIDEO_ID_HERE with a real YouTube video ID.
@@ -278,7 +324,7 @@ function renderView(view){
   let html = "";
   if(view.type === "astro"){
     html = `<div class="view-heading"><div><p class="kicker">01 / The universe</p><h1>Astro.</h1></div><p>Deep sky, planets, the Milky Way and aurora — a collection of the sky above us.</p></div>
-      <div class="category-grid">${astroCategories.map(cat => `<button class="category-card" data-astro="${escapeHtml(cat.key)}"><div class="thumb">${imageMarkup(cat.cover,cat.name)} </div><div class="cat-info"><h3>${escapeHtml(cat.name)}</h3><p>${cat.photos.length} ${cat.photos.length===1?"photograph":"photographs"}</p></div></button>`).join("")}</div>`;
+      <div class="category-grid">${astroCategories.map(cat => `<button class="category-card" data-astro="${escapeHtml(cat.key)}"><div class="thumb">${imageMarkup(cat.cover,cat.name)}${imageMarkup(cat.cover,cat.name)}${imageMarkup(cat.cover,cat.name)}</div><div class="cat-info"><h3>${escapeHtml(cat.name)}</h3><p>${cat.photos.length} ${cat.photos.length===1?"photograph":"photographs"}</p></div></button>`).join("")}</div>`;
   } else if(view.type === "astro-category"){
     const cat = astroCategories.find(item=>item.key===view.key);
     if(!cat){showView({type:"astro"},false);return;}
@@ -288,7 +334,7 @@ function renderView(view){
       <div class="country-grid">${countries.map(country => {
         const photos=travelPhotos[country]||[];
         const cover=countryCovers[country];
-        return `<button class="country-card" data-country="${escapeHtml(country)}">${cover?imageMarkup(cover,country):""}<span class="country-title"><strong>${escapeHtml(country)}</strong><small>${photos.length} ${photos.length===1?"PHOTO":"PHOTOS"}</small></span></button>`;
+        return `<button class="country-card" data-country="${escapeHtml(country)}">${cover?imageMarkup(cover,country)+imageMarkup(cover,country)+imageMarkup(cover,country):""}<span class="country-title"><strong>${escapeHtml(country)}</strong><small>${photos.length} ${photos.length===1?"PHOTO":"PHOTOS"}</small></span></button>`;
       }).join("")}</div>`;
   } else if(view.type === "country"){
     const photos=travelPhotos[view.country]||[];
